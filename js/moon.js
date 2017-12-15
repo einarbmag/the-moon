@@ -1,5 +1,6 @@
 var camera, controls, scene, renderer;
 var mesh;
+var faceIndex;
 var raycaster, mouse;
 var INTERSECTED;
 
@@ -57,6 +58,7 @@ function init() {
     //
     window.addEventListener( 'resize', onWindowResize, false );
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+    document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 }
 
 function onWindowResize() {
@@ -69,6 +71,12 @@ function onDocumentMouseMove( event ) {
     event.preventDefault();
     mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
     mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+}
+
+function onDocumentMouseDown( event ) {
+    event.preventDefault();
+
+    console.log('faceIndex is', faceIndex);
 }
 
 function animate() {
@@ -86,7 +94,7 @@ function render() {
     var intersects = raycaster.intersectObject( mesh );
 
     if ( intersects.length > 0 ) {
-        var faceIndex = intersects[0].faceIndex - intersects[0].faceIndex % 2;
+        faceIndex = intersects[0].faceIndex - intersects[0].faceIndex % 2;
 
         if (INTERSECTED != faceIndex){
             
