@@ -1,0 +1,135 @@
+body {
+    margin          : 0px;
+    background-color: #000000;
+    overflow        : hidden;
+}
+
+/* Import custom font - Druk Narrow (medium font weight) */
+@font-face {
+  font-family: 'Druk-Narrow';
+  src: url('../static/fonts/druk-narrow-medium.eot'); /* IE9 compatible modes */
+  src: url('../static/fonts/druk-narrow-medium.eot?#iefix') format('embedded-opentype'),
+       url('../static/fonts/druk-narrow-medium.woff2') format('woff2'), 
+       url('../static/fonts/druk-narrow-medium.woff') format('woff'),
+       url('../static/fonts/druk-narrow-medium.ttf')  format('truetype'); 
+}
+
+/* Import custom font - Gza Seminegra */
+@font-face {
+  font-family: 'Gza-Seminegra';
+  src: url('../static/fonts/gza-seminegra.eot'); /* IE9 compatible modes */
+  src: url('../static/fonts/gza-seminegra.eot?#iefix') format('embedded-opentype'),
+       url('../static/fonts/gza-seminegra.woff2') format('woff2'), 
+       url('../static/fonts/gza-seminegra.woff') format('woff'),
+       url('../static/fonts/gza-seminegra.ttf')  format('truetype'); 
+}
+
+#moon {
+    /*background-color: red;*/
+}
+
+#lbox {
+    padding-left    : 60px;
+    padding-top     : 60px;
+    /*background-color: blue;*/
+    height          : 100%;
+    width           : 25%;
+    position        : fixed;
+
+}
+
+#lbox--title {
+    font-family     : 'Druk-Narrow';
+    font-size       : 120px;
+    line-height     : 115px;
+    letter-spacing  : 2px;
+    color           : #FFFFFF;
+    text-align      : left;
+}
+
+#lbox--descr {
+    padding-top   : 60px;
+    font-family   : 'Gza-Seminegra';
+    font-size     : 20px;
+    letter-spacing: 2px;
+    color         : gray;
+    text-align    : left;
+}
+
+#lbox--fom {
+    position      : absolute;
+    height: 70px;
+    width: 250px;
+    font-family   : 'Gza-Seminegra';
+    font-size     : 20px;
+    letter-spacing: 2px;
+    color         : white;
+    margin-bottom: 60px;
+    border        : 1px solid white;
+    bottom        : 60px;
+}
+
+#rbox {
+    /*background-color: blue;*/
+    height          : 100%;
+    width           : 25%;
+    position        : fixed;
+    text-align      : center;
+    font-size       : 40px;
+    right           : 0;
+    color           : #FFFFFF;
+}
+
+#rbox-holders {
+    border: 1px solid white;
+    position: absolute;
+    margin-top: 55px;
+    margin-right: 60px;
+    height: 400px;
+    width: 318px;
+    /*background-color: green;*/
+    right: 0;
+}
+
+#rbox-holders--title {
+    padding-top: 25px;
+    font-family: 'Druk-Narrow';
+    font-size: 60px;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    text-decoration: underline;
+}
+
+#rbox-holders--content {
+    padding-top: 25px;
+    font-family: 'Gza-Seminegra';
+    font-size: 20px;
+    line-height: 25px;
+    color: gray;
+}
+
+#rbox-acre {
+    /*border: 1px solid white;*/
+    position: absolute;
+    background-color: white;
+    margin-bottom: 55px;
+    margin-right: 60px;
+
+    height: 500px;
+    width: 320px;
+    /*background-color: green;*/
+    right: 0;
+
+    bottom: 0;
+}
+
+#rbox-acre--img {
+    width: 100%;
+    height: auto;
+}
+
+#rbox-acre--details {
+    font-family: 'Gza-Seminegra';
+    font-size: 20px;
+    color: gray;
+}

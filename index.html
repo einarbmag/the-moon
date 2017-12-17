@@ -4,25 +4,48 @@
         <title>To the moon!!!</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-        <style>
-            body {
-                margin: 0px;
-                background-color: #000000;
-                overflow: hidden;
-            }
-        </style>
-        <!--
-        <script src="vendor/three.js-master/build/three.min.js"></script>
-        <script src="vendor/three.js-master/examples/js/controls/OrbitControls.js"></script>
-        -->
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
         <script src="vendor/three.min.js"></script>
         <script src="vendor/OrbitControls.js"></script>
     </head>
     <body>
+        <div id="lbox">
+            <div id="lbox--title">THE <br /> ETHEREUM <br /> MOON</div>
+            <div id="lbox--descr">Buy And Sell Land On <br /> The Moon. Own Your Own  <br />Piece Of History FOREVER.</div>
+            <div id="lbox--fom" style="display: table; overflow: hidden;">
+                <div style="display: table-cell; vertical-align: middle;">
+                    <div style="text-align: center;">
+                        Find Out More
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="rbox">
+            <div id="rbox-holders">
+                <div id="rbox-holders--title">
+                    TOP HOLDERS
+                </div>
+                <div id="rbox-holders--content">
+                    1. Moon <br />
+                    2. Moon <br />
+                    3. Moon <br />
+                    4. Moon <br />
+                    5. Moon <br />
+                    6. Moon <br />
+                    7. Moon <br />
+                    8. Moon <br />
+                    9. Moon <br />
+                    10. Moon <br />
+                </div>
+            </div>
+            <div id="rbox-acre">
+                <img id="rbox-acre--img" src="static/images/acre.png" alt="Image of the acre"/>
+                <div id="rbox-acre--details"> ACRE #0000</div>
+            </div>
+        </div>
 
         <div id="moon"></div>
-   
-        <script src="js/moon.js"></script>
-
+        <script src="js/moon.js"></script>  
     </body>
 </html>
