@@ -13,7 +13,7 @@ function init() {
     scene = new THREE.Scene();
     var texture = new THREE.TextureLoader().load( 'img/maps/moon2.jpg');
     var normal = new THREE.TextureLoader().load( 'img/maps/normal2.jpg' );
-    var geometry = new THREE.SphereGeometry( 100, 50, 50 );
+    var geometry = new THREE.SphereGeometry( 200, 200, 200 );
     
     var material = new THREE.MeshStandardMaterial({ 
         map: texture , 
