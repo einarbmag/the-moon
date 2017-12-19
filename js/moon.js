@@ -2,7 +2,11 @@ var camera, controls, scene, renderer;
 var mesh;
 var faceIndex;
 var raycaster, mouse;
+var isDragging;
 var INTERSECTED;
+
+var mousePositionOnUp;
+var mousePositionOnDown;
 
 init();
 animate();
@@ -13,7 +17,7 @@ function init() {
     scene = new THREE.Scene();
     var texture = new THREE.TextureLoader().load( 'img/maps/moon2.jpg');
     var normal = new THREE.TextureLoader().load( 'img/maps/normal2.jpg' );
-    var geometry = new THREE.SphereGeometry( 200, 200, 200 );
+    var geometry = new THREE.SphereGeometry( 100, 50, 50 );
     
     var material = new THREE.MeshStandardMaterial({ 
         map: texture , 
@@ -56,10 +60,10 @@ function init() {
     window.addEventListener( 'resize', onWindowResize, false );
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-
+    document.addEventListener( 'mouseup', onDocumentMouseUp, false );
 
     // Mouse Dragging Logic
-    var isDragging = false;
+    isDragging = false;
     var previousMousePosition = {
         x: 0,
         y: 0
@@ -121,37 +125,52 @@ function onDocumentMouseMove( event ) {
 function onDocumentMouseDown( event ) {
     event.preventDefault();
 
-    console.log(faceIndex)
-    document.getElementById("rbox-acre--details").textContent="ACRE #" + faceIndex;
+    mousePositionOnDown = {
+        x: event.offsetX,
+        y: event.offsetY
+    }
+} 
 
-    mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
-    mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+function onDocumentMouseUp( event ) {
+    event.preventDefault();
 
-    raycaster.setFromCamera( mouse, camera );
-    var intersects = raycaster.intersectObject( mesh ); 
+    mousePositionOnUp = {
+        x: event.offsetX,
+        y: event.offsetY
+    }
+
+    if (mousePositionOnUp.x == mousePositionOnDown.x && mousePositionOnUp.y == mousePositionOnDown.y) {
+        document.getElementById("rbox-acre--details").textContent="ACRE #" + faceIndex;
+
+        mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
+        mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+
+        raycaster.setFromCamera( mouse, camera );
+        var intersects = raycaster.intersectObject( mesh ); 
 
 
-    if ( intersects.length > 0 ) {
-        faceIndex = intersects[0].faceIndex - intersects[0].faceIndex % 2;
+        if ( intersects.length > 0  && mousePositionOnUp.x == mousePositionOnDown.x) {
+            faceIndex = intersects[0].faceIndex - intersects[0].faceIndex % 2;
 
-        if (mesh.geometry.faces[faceIndex].color.getHexString() == 'ffffff') {
-            mesh.geometry.faces[faceIndex].color.setHex(0x4c00ec);
-            mesh.geometry.faces[faceIndex+1].color.setHex(0x4c00ec); 
-            if (INTERSECTED != faceIndex) {   
+            if (mesh.geometry.faces[faceIndex].color.getHexString() == 'ffffff') {
                 mesh.geometry.faces[faceIndex].color.setHex(0x4c00ec);
                 mesh.geometry.faces[faceIndex+1].color.setHex(0x4c00ec); 
-            }
-        } else {
-            mesh.geometry.faces[faceIndex].color.setHex(0xffffff);
-            mesh.geometry.faces[faceIndex+1].color.setHex(0xffffff);
-            if (INTERSECTED != faceIndex) {   
+                if (INTERSECTED != faceIndex) {   
+                    mesh.geometry.faces[faceIndex].color.setHex(0x4c00ec);
+                    mesh.geometry.faces[faceIndex+1].color.setHex(0x4c00ec); 
+                }
+            } else {
                 mesh.geometry.faces[faceIndex].color.setHex(0xffffff);
-                mesh.geometry.faces[faceIndex+1].color.setHex(0xffffff); 
-            } 
-        }
+                mesh.geometry.faces[faceIndex+1].color.setHex(0xffffff);
+                if (INTERSECTED != faceIndex) {   
+                    mesh.geometry.faces[faceIndex].color.setHex(0xffffff);
+                    mesh.geometry.faces[faceIndex+1].color.setHex(0xffffff); 
+                } 
+            }
 
-        INTERSECTED = faceIndex;
-        mesh.geometry.colorsNeedUpdate = true;
+            INTERSECTED = faceIndex;
+            mesh.geometry.colorsNeedUpdate = true;
+        }
     }
 }
 
